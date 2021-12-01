@@ -10,5 +10,20 @@
         android:name="com.example.tastebuds.ui.home.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/navigation_review"
+        android:name="com.example.tastebuds.ui.review.ReviewFragment"
+        android:label="@string/title_review"
+        tools:layout="@layout/fragment_review" />
+    <fragment
+        android:id="@+id/navigation_favourites"
+        android:name="com.example.tastebuds.ui.favourites.FavouritesFragment"
+        android:label="@string/title_favourites"
+        tools:layout="@layout/fragment_favourites" />
+    <fragment
+        android:id="@+id/navigation_account"
+        android:name="com.example.tastebuds.ui.account.AccountFragment"
+        android:label="@string/title_account"
+        tools:layout="@layout/fragment_account" />
 
 </navigation>
