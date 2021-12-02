@@ -1,10 +1,10 @@
 package com.example.tastebuds.ui.review
 
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import androidx.appcompat.widget.Toolbar
+import androidx.recyclerview.widget.RecyclerView
 import com.example.tastebuds.R
 
 // TODO: Rename parameter arguments, choose names that match
@@ -27,6 +27,7 @@ class ReviewFragment : Fragment() {
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
+            setHasOptionsMenu(true)
         }
     }
 
@@ -36,6 +37,11 @@ class ReviewFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_review, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        val gg = view.findViewById<Toolbar>(R.id.review_toolbar) as Toolbar
+        gg.setNavigationIcon(R.drawable.ic_notifications_black_24dp)
     }
 
     companion object {

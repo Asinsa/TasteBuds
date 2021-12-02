@@ -36,8 +36,27 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
 
 
-    }
 
+        /*
+        val bottomNavigation = findViewById<BottomNavigationView>(R.id.bottomNavigation)
+
+        bottomNavigation.setOnNavigationItemSelectedListener { item ->
+            when(item.itemId) {
+                R.id.navigation_home -> {
+                    true
+                }
+                R.id.navigation_review -> {
+                    true
+                }
+                R.id.navigation_review -> {
+                    true
+                }
+                else -> false
+            }
+        }
+
+         */
+    }
 
     fun getMain(): MainActivity {
         return this

@@ -24,7 +24,6 @@
       android:name="androidx.navigation.fragment.NavHostFragment"
       android:layout_width="match_parent"
       android:layout_height="0dp"
-      android:layout_marginTop="59dp"
       android:layout_marginBottom="59dp"
       app:defaultNavHost="true"
       app:layout_constraintBottom_toBottomOf="@+id/bottomNavigation"
@@ -34,16 +33,5 @@
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent"
       app:navGraph="@navigation/mobile_navigation" />
-
-  <androidx.appcompat.widget.Toolbar
-      android:id="@+id/toolbar"
-      android:layout_width="match_parent"
-      android:layout_height="59dp"
-      android:background="@color/purple_700"
-      android:minHeight="?attr/actionBarSize"
-      android:theme="?attr/actionBarTheme"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
