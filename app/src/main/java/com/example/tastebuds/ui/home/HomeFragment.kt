@@ -1,17 +1,21 @@
 package com.example.tastebuds.ui.home
 
+import android.app.SearchManager
+import android.content.Context
 import android.os.Bundle
+import android.view.*
+import android.widget.EditText
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.core.content.res.ColorStateListInflaterCompat.inflate
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.restaurantreviewapp.Restaurant
 import com.example.tastebuds.R
+import com.example.tastebuds.databinding.ActivityMainBinding
 import com.example.tastebuds.databinding.ActivityMainBinding.inflate
 import com.example.tastebuds.ui.Adapter
 import com.example.tastebuds.ui.MainActivity
@@ -31,6 +35,7 @@ class HomeFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    private val activity = MainActivity().getMain()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,14 +49,13 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        // List of restaurants
         val restaurantArrayList = populateList()
 
         val rootView: View = inflater.inflate(R.layout.fragment_home, container, false)
-
         val recyclerView = rootView.findViewById<View>(R.id.trending_recycler_view) as RecyclerView // Bind to the recyclerview in the layout
 
-        val main = MainActivity()
-        val layoutManager = LinearLayoutManager(main.getMain()) // Get the layout manager
+        val layoutManager = LinearLayoutManager(activity) // Get the layout manager
         recyclerView.layoutManager = layoutManager
         val mAdapter = Adapter(restaurantArrayList)
         recyclerView.adapter = mAdapter
