@@ -3,10 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Documents/MobileApps/TasteBuds/app/src/main/res/drawable/selector.xml" value="0.346875" />
+        <entry key="..\:/Documents/MobileApps/TasteBuds/app/src/main/res/font/merriweather_sans.xml" value="0.3609375" />
         <entry key="..\:/Documents/MobileApps/TasteBuds/app/src/main/res/layout/activity_main.xml" value="0.24739583333333334" />
         <entry key="..\:/Documents/MobileApps/TasteBuds/app/src/main/res/layout/fragment_account.xml" value="0.3255208333333333" />
         <entry key="..\:/Documents/MobileApps/TasteBuds/app/src/main/res/layout/fragment_home.xml" value="0.31354166666666666" />
         <entry key="..\:/Documents/MobileApps/TasteBuds/app/src/main/res/layout/fragment_review.xml" value="0.2994791666666667" />
+        <entry key="..\:/Documents/MobileApps/TasteBuds/app/src/main/res/layout/row_layout.xml" value="0.3307291666666667" />
         <entry key="..\:/Documents/MobileApps/TasteBuds/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.24479166666666666" />
         <entry key="..\:/Documents/MobileApps/TasteBuds/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2635416666666667" />
         <entry key="..\:/Documents/MobileApps/TasteBuds/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.2635416666666667" />

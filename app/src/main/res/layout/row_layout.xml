@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="90dp"
+    android:background="@drawable/selector"
+    android:clickable="true"
+    android:focusable="true"
+    android:padding="6dip">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/icon"
+        android:layout_width="117dp"
+        android:layout_height="84dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="6dip"
+        android:layout_marginBottom="0dp"
+        android:cropToPadding="true"
+        android:src="@mipmap/ic_launcher" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/firstLine"
+        android:layout_width="282dp"
+        android:layout_height="wrap_content"
+        android:layout_alignWithParentIfMissing="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="false"
+        android:layout_marginEnd="0dp"
+        android:layout_marginRight="45dp"
+        android:layout_toRightOf="@id/icon"
+        android:fontFamily="sans-serif-medium"
+        android:includeFontPadding="false"
+        android:textSize="20sp" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/distance"
+        android:layout_width="39dp"
+        android:layout_height="wrap_content"
+        android:layout_alignWithParentIfMissing="false"
+        android:layout_alignParentTop="false"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="238dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_toRightOf="@id/icon"
+        android:fontFamily="sans-serif-medium"
+        android:includeFontPadding="false"
+        android:textAlignment="center"
+        android:textSize="14sp" />
+
+    <RatingBar
+        android:id="@+id/ratingBar2"
+        style="@style/Widget.AppCompat.RatingBar.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:layout_below="@+id/firstLine"
+        android:layout_alignStart="@+id/icon"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentRight="false"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="123dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginBottom="29dp" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="0dp"
+        android:background="?android:attr/listDivider" />
+
+</RelativeLayout>

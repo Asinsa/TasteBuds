@@ -16,4 +16,5 @@
     <color name="secondaryDarkColor">#0100ca</color>
     <color name="primaryTextColor">#000000</color>
     <color name="secondaryTextColor">#2196f3</color>
+    <color name="accent">#434343</color>
 </resources>

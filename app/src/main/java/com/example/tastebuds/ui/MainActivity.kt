@@ -10,9 +10,12 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.restaurantreviewapp.Restaurant
 import com.example.tastebuds.R
 import com.example.tastebuds.databinding.ActivityMainBinding
+import com.example.tastebuds.ui.home.HomeFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
 
@@ -52,6 +55,10 @@ class MainActivity : AppCompatActivity() {
         }
 
          */
+    }
+
+    fun getMain(): MainActivity {
+        return this
     }
 
 }

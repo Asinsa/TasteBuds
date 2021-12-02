@@ -5,8 +5,10 @@
     <string name="title_review">Review</string>
     <string name="title_favourites">Favourites</string>
     <string name="title_account">Account</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
@@ -16,4 +18,18 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
+
+    <!-- Strings related to restaurants -->
+    <string name="turtle_bay">Turtle Bay Swansea</string>
+    <string name="tacobell">Taco Bell</string>
+    <string name="banana_leaf">Banana Leaf</string>
+    <string name="fave_chicken">Favorite Chicken Swansea</string>
+    <string name="dominos">Dominos Pizza</string>
+    <string name="brewdog">BrewDog Swansea</string>
+    <string name="monnis">Monnis Fish Bar</string>
+    <string name="kaspas">Kaspas Desserts Swansea</string>
+    <string name="five_guys">Five Guys</string>
+    <string name="nandos">Nandos Swansea</string>
+    <string name="tgi_fridays">TGI Fridays - Swansea</string>
+    <string name="msg">are the best!</string>
 </resources>

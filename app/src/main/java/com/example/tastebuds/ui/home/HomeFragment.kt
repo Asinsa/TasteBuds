@@ -5,7 +5,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.res.ColorStateListInflaterCompat.inflate
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.restaurantreviewapp.Restaurant
 import com.example.tastebuds.R
+import com.example.tastebuds.databinding.ActivityMainBinding.inflate
+import com.example.tastebuds.ui.Adapter
+import com.example.tastebuds.ui.MainActivity
+import kotlin.random.Random
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -34,8 +42,20 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val restaurantArrayList = populateList()
+
+        val rootView: View = inflater.inflate(R.layout.fragment_home, container, false)
+
+        val recyclerView = rootView.findViewById<View>(R.id.trending_recycler_view) as RecyclerView // Bind to the recyclerview in the layout
+
+        val main = MainActivity()
+        val layoutManager = LinearLayoutManager(main.getMain()) // Get the layout manager
+        recyclerView.layoutManager = layoutManager
+        val mAdapter = Adapter(restaurantArrayList)
+        recyclerView.adapter = mAdapter
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        return rootView
     }
 
     companion object {
@@ -56,5 +76,26 @@ class HomeFragment : Fragment() {
                     putString(ARG_PARAM2, param2)
                 }
             }
+    }
+
+    /*
+ * A function to add names of F1 teams and logos to a list of MyModel
+ */
+    private fun populateList(): ArrayList<Restaurant> {
+        val list = ArrayList<Restaurant>()
+        val myImageList = arrayOf(R.drawable.turtle_bay, R.drawable.tacobell, R.drawable.banana_leaf, R.drawable.fave_chicken, R.drawable.dominos, R.drawable.brewdog, R.drawable.monnis, R.drawable.kaspas, R.drawable.five_guys, R.drawable.nandos, R.drawable.tgi_fridays)
+        val myImageNameList = arrayOf(R.string.turtle_bay, R.string.tacobell, R.string.banana_leaf, R.string.fave_chicken, R.string.dominos, R.string.brewdog, R.string.monnis, R.string.kaspas, R.string.five_guys, R.string.nandos, R.string.tgi_fridays)
+        val ratingList = doubleArrayOf(5.0,4.8,4.6,4.4,4.2,4.0,3.8,3.6,3.4,2.0,1.0)
+
+        for (i in 0..10) {
+            val restaurant = Restaurant()
+            restaurant.setNames(getString(myImageNameList[i]))
+            restaurant.setImages(myImageList[i])
+            val randomValue = Random.nextInt(0, 5)
+            restaurant.setRestaurantDistance(randomValue)
+            restaurant.setRestaurantRating(ratingList[i])
+            list.add(restaurant)
+        }
+        return list
     }
 }
