@@ -21,6 +21,11 @@
         android:label="@string/title_favourites"
         tools:layout="@layout/fragment_favourites" />
     <fragment
+        android:id="@+id/navigation_account"
+        android:name="com.example.tastebuds.ui.account.AccountFragment"
+        android:label="@string/title_account"
+        tools:layout="@layout/fragment_account" />
+    <fragment
         android:id="@+id/navigation_login"
         android:name="com.example.tastebuds.ui.account.LoginFragment"
         android:label="@string/login"
@@ -33,13 +38,12 @@
             app:destination="@id/navigation_register" />
     </fragment>
     <fragment
-        android:id="@+id/navigation_account"
-        android:name="com.example.tastebuds.ui.account.AccountFragment"
-        android:label="@string/title_account"
-        tools:layout="@layout/fragment_account" />
-    <fragment
         android:id="@+id/navigation_register"
         android:name="com.example.tastebuds.ui.account.RegisterFragment"
         android:label="@string/register"
-        tools:layout="@layout/fragment_register" />
+        tools:layout="@layout/fragment_register" >
+        <action
+            android:id="@+id/action_navigation_register_to_navigation_account"
+            app:destination="@id/navigation_account" />
+    </fragment>
 </navigation>

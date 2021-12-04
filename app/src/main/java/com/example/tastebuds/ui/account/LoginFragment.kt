@@ -32,6 +32,7 @@ class LoginFragment : Fragment() {
     private var param2: String? = null
     private var mAuth = FirebaseAuth.getInstance()
     private val activity = MainActivity().getMain()
+    var navController: NavController? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,31 +53,34 @@ class LoginFragment : Fragment() {
 
         // Login
         val loginButton = rootView.findViewById<MaterialButton>(R.id.login_button)
-        if (emailText.text.toString() != "" && passwordText.text.toString() != "") {
-            loginButton.setOnClickListener { view ->
-                mAuth.signInWithEmailAndPassword(
-                    emailText.text.toString(),
-                    passwordText.text.toString()
-                ).addOnCompleteListener(activity) { task ->
+        loginButton.setOnClickListener { view ->
+            if (emailText.text.toString() != "" && passwordText.text.toString() != "") {
+                mAuth.signInWithEmailAndPassword(emailText.text.toString(), passwordText.text.toString()).addOnCompleteListener(activity) { task ->
                     if (task.isSuccessful) {
                         val user = mAuth.currentUser
                         activity.setUser(user?.email)
 
-                        var navc = Navigation.findNavController(view)
-                        navc?.navigate(R.id.action_navigation_login_to_navigation_account)
+                        navController = Navigation.findNavController(view)
+                        navController?.navigate(R.id.action_navigation_login_to_navigation_account)
                     } else {
                         closeKeyBoard()
-                        showMessage(view, "Couldn't sign you in")
+                        showMessage(view, getString(R.string.login_failed))
                     }
                 }
+            } else if (emailText.text.toString() == "") {
+                emailText.error = getString(R.string.empty_email)
+                emailText.requestFocus()
+            } else {
+                passwordText.error = getString(R.string.empty_password)
+                passwordText.requestFocus()
             }
         }
 
         // Sign up
-        val registerButton = rootView.findViewById<MaterialButton>(R.id.sign_up_button)
+        val registerButton = rootView.findViewById<MaterialButton>(R.id.sign_up_page_button)
         registerButton.setOnClickListener { view ->
-            var navc = Navigation.findNavController(view)
-            navc?.navigate(R.id.action_navigation_login_to_navigation_register)
+            navController = Navigation.findNavController(view)
+            navController?.navigate(R.id.action_navigation_login_to_navigation_register)
         }
 
         // Inflate the layout for this fragment

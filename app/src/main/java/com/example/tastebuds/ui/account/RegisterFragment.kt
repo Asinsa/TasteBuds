@@ -1,11 +1,20 @@
 package com.example.tastebuds.ui.account
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import com.example.tastebuds.R
+import com.example.tastebuds.ui.MainActivity
+import com.google.android.material.button.MaterialButton
+import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.textfield.TextInputEditText
+import com.google.firebase.auth.FirebaseAuth
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -21,6 +30,9 @@ class RegisterFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    private var mAuth = FirebaseAuth.getInstance()
+    private val activity = MainActivity().getMain()
+    var navController: NavController? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,8 +46,71 @@ class RegisterFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        var rootView: View = inflater.inflate(R.layout.fragment_register, container, false)
+
+        val emailText = rootView.findViewById<TextInputEditText>(R.id.email_field)
+        val passwordText = rootView.findViewById<TextInputEditText>(R.id.password_field)
+        val confirmPasswordText = rootView.findViewById<TextInputEditText>(R.id.confirm_password_field)
+
+        // Register
+        val registerButton = rootView.findViewById<MaterialButton>(R.id.register_button)
+        registerButton.setOnClickListener { view ->
+            if (emailText.text.toString() != "" && passwordText.text.toString() != "") {
+                if (passwordText.text.toString() == confirmPasswordText.text.toString() && passwordText.text.toString().length >= 8) {
+                    mAuth.createUserWithEmailAndPassword(emailText.text.toString(), passwordText.text.toString())
+                        .addOnCompleteListener(activity) { task ->
+                            if (task.isSuccessful) {
+                                showMessage(view, getString(R.string.register_success))
+                                val user = mAuth.currentUser
+                                activity.setUser(user?.email)
+
+                                navController = Navigation.findNavController(view)
+                                navController?.navigate(R.id.action_navigation_register_to_navigation_account)
+                            } else {
+                                closeKeyBoard()
+                                showMessage(view, getString(R.string.register_failed))
+                            }
+                        }
+                }
+                else if (passwordText.text.toString().length >= 8) {
+                    passwordText.error = getString(R.string.password_too_short)
+                    passwordText.requestFocus()
+                }
+                else {
+                    confirmPasswordText.error = getString(R.string.password_no_match)
+                    confirmPasswordText.requestFocus()
+                }
+            } else if (emailText.text.toString() == "") {
+                emailText.error = getString(R.string.empty_email)
+                emailText.requestFocus()
+            } else {
+                passwordText.error = getString(R.string.empty_password)
+                passwordText.requestFocus()
+            }
+        }
+
+        // Login
+        val loginButton = rootView.findViewById<MaterialButton>(R.id.login_page_button)
+        loginButton.setOnClickListener { view ->
+            navController = Navigation.findNavController(view)
+            navController?.navigate(R.id.action_navigation_login_to_navigation_register)
+        }
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_register, container, false)
+        return rootView
+    }
+
+    private fun showMessage (view: View, message: String) {
+        Snackbar.make (view, message, Snackbar.LENGTH_LONG).show()
+    }
+
+    private fun closeKeyBoard() {
+        val view = activity.currentFocus
+        if (view != null) {
+            val imm = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(view.windowToken, 0)
+        }
     }
 
     companion object {
