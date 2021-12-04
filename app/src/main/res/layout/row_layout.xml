@@ -54,7 +54,6 @@
 
     <RatingBar
         android:id="@+id/ratingBar2"
-        android:progressTint="@color/primaryLightColor"
         style="@style/Widget.AppCompat.RatingBar.Small"
         android:layout_width="wrap_content"
         android:layout_height="25dp"
@@ -65,7 +64,8 @@
         android:layout_alignParentBottom="true"
         android:layout_marginStart="123dp"
         android:layout_marginTop="7dp"
-        android:layout_marginBottom="29dp" />
+        android:layout_marginBottom="29dp"
+        android:progressTint="@color/primaryLightColor" />
 
     <View
         android:id="@+id/divider"

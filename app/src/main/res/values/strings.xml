@@ -27,6 +27,16 @@
     <string name="msg">are the best!</string>
 
     <!-- Strings related to login -->
+    <string name="restaurant_details">Restaurant</string>
+    <string name="restaurant">Restaurant Name</string>
+    <string name="restaurant_location">Restaurant Location</string>
+
+    <string name="review_details">Review</string>
+    <string name="review_title">Review Title</string>
+    <string name="pics">Upload Photos</string>
+    <string name="review_body">Review</string>
+
+    <!-- Strings related to login -->
     <string name="login">Login</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>

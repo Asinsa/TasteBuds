@@ -59,7 +59,7 @@ class LoginFragment : Fragment() {
                     if (task.isSuccessful) {
                         val user = mAuth.currentUser
                         activity.setUser(user?.email)
-
+                        activity.logIn()
                         navController = Navigation.findNavController(view)
                         navController?.navigate(R.id.action_navigation_login_to_navigation_account)
                     } else {

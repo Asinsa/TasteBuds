@@ -46,25 +46,26 @@ class RegisterFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         var rootView: View = inflater.inflate(R.layout.fragment_register, container, false)
-
         val emailText = rootView.findViewById<TextInputEditText>(R.id.email_field)
         val passwordText = rootView.findViewById<TextInputEditText>(R.id.password_field)
-        val confirmPasswordText = rootView.findViewById<TextInputEditText>(R.id.confirm_password_field)
+        val confirmPasswordText =
+            rootView.findViewById<TextInputEditText>(R.id.confirm_password_field)
 
         // Register
         val registerButton = rootView.findViewById<MaterialButton>(R.id.register_button)
         registerButton.setOnClickListener { view ->
             if (emailText.text.toString() != "" && passwordText.text.toString() != "") {
                 if (passwordText.text.toString() == confirmPasswordText.text.toString() && passwordText.text.toString().length >= 8) {
-                    mAuth.createUserWithEmailAndPassword(emailText.text.toString(), passwordText.text.toString())
-                        .addOnCompleteListener(activity) { task ->
+                    mAuth.createUserWithEmailAndPassword(
+                        emailText.text.toString(),
+                        passwordText.text.toString()
+                    ).addOnCompleteListener(activity) { task ->
                             if (task.isSuccessful) {
                                 showMessage(view, getString(R.string.register_success))
                                 val user = mAuth.currentUser
                                 activity.setUser(user?.email)
-
+                                activity.logIn()
                                 navController = Navigation.findNavController(view)
                                 navController?.navigate(R.id.action_navigation_register_to_navigation_account)
                             } else {
@@ -72,12 +73,10 @@ class RegisterFragment : Fragment() {
                                 showMessage(view, getString(R.string.register_failed))
                             }
                         }
-                }
-                else if (passwordText.text.toString().length >= 8) {
+                } else if (passwordText.text.toString().length >= 8) {
                     passwordText.error = getString(R.string.password_too_short)
                     passwordText.requestFocus()
-                }
-                else {
+                } else {
                     confirmPasswordText.error = getString(R.string.password_no_match)
                     confirmPasswordText.requestFocus()
                 }
