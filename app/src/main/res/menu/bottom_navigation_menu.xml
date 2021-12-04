@@ -16,7 +16,7 @@
         android:title="@string/title_favourites" />
 
     <item
-        android:id="@+id/navigation_account"
+        android:id="@+id/navigation_login"
         android:icon="@drawable/ic_account_24"
         android:title="@string/title_account" />
 </menu>

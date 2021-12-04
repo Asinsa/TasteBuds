@@ -4,22 +4,17 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.content.ContextCompat
 import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.restaurantreviewapp.Restaurant
 import com.example.tastebuds.R
 import com.example.tastebuds.databinding.ActivityMainBinding
-import com.example.tastebuds.ui.home.HomeFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private var userEmail: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +29,7 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
 
         navView.setupWithNavController(navController)
+
 
         /*
         val bottomNavigation = findViewById<BottomNavigationView>(R.id.bottomNavigation)
@@ -52,12 +48,15 @@ class MainActivity : AppCompatActivity() {
                 else -> false
             }
         }
-
          */
     }
 
     fun getMain(): MainActivity {
         return this
+    }
+
+    fun setUser(email: String?) {
+        userEmail = email
     }
 
 }
