@@ -41,34 +41,42 @@ class LoginFragment : Fragment() {
         }
     }
 
-    var navc: NavController?= null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         var rootView: View = inflater.inflate(R.layout.fragment_login, container, false)
 
         val emailText = rootView.findViewById<TextInputEditText>(R.id.email_field)
         val passwordText = rootView.findViewById<TextInputEditText>(R.id.password_field)
+
+        // Login
         val loginButton = rootView.findViewById<MaterialButton>(R.id.login_button)
-        loginButton.setOnClickListener { view ->
-            mAuth.signInWithEmailAndPassword(
-                emailText.text.toString(),
-                passwordText.text.toString()
-            ).addOnCompleteListener(
-                    activity
-                ){ task ->
+        if (emailText.text.toString() != "" && passwordText.text.toString() != "") {
+            loginButton.setOnClickListener { view ->
+                mAuth.signInWithEmailAndPassword(
+                    emailText.text.toString(),
+                    passwordText.text.toString()
+                ).addOnCompleteListener(activity) { task ->
                     if (task.isSuccessful) {
                         val user = mAuth.currentUser
                         activity.setUser(user?.email)
-                        navc = Navigation.findNavController(view)
+
+                        var navc = Navigation.findNavController(view)
                         navc?.navigate(R.id.action_navigation_login_to_navigation_account)
                     } else {
                         closeKeyBoard()
                         showMessage(view, "Couldn't sign you in")
                     }
                 }
+            }
+        }
+
+        // Sign up
+        val registerButton = rootView.findViewById<MaterialButton>(R.id.sign_up_button)
+        registerButton.setOnClickListener { view ->
+            var navc = Navigation.findNavController(view)
+            navc?.navigate(R.id.action_navigation_login_to_navigation_register)
         }
 
         // Inflate the layout for this fragment

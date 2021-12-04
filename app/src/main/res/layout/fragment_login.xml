@@ -24,85 +24,69 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.66" />
 
-    <com.google.android.material.textview.MaterialTextView
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/email_prompt"
-        android:layout_width="240dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:text="@string/prompt_email"
-        android:fontFamily="@font/merriweather_sans"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:typeface="normal"
-        app:layout_constraintBottom_toTopOf="@+id/email_field"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.263"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/email_field"
         android:layout_width="310dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="28dp"
         android:ems="10"
-        android:fontFamily="@font/merriweather_sans"
-        android:hint="@string/prompt_email"
-        android:inputType="textEmailAddress"
-        android:textColorHint="@color/white"
-        android:textSize="15sp"
-        android:typeface="normal"
         app:layout_constraintBottom_toTopOf="@+id/password_prompt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.445"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.9">
 
-    <com.google.android.material.textview.MaterialTextView
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/email_field"
+            android:background="@android:color/transparent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:maxLines="1"
+            android:fontFamily="@font/merriweather_sans"
+            android:hint="@string/prompt_email"
+            android:textSize="15sp"
+            android:typeface="normal"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/password_prompt"
-        android:layout_width="240dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:text="@string/prompt_password"
-        android:fontFamily="@font/merriweather_sans"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:typeface="normal"
-        app:layout_constraintBottom_toTopOf="@+id/password_field"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.263"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/password_field"
         android:layout_width="310dp"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:fontFamily="@font/merriweather_sans"
-        android:hint="@string/prompt_password"
-        android:inputType="textPassword"
-        android:textColorHint="@color/white"
-        android:textSize="15sp"
-        android:typeface="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.445"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.558" />
+        app:layout_constraintVertical_bias="0.43">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/password_field"
+            android:background="@android:color/transparent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:maxLines="1"
+            android:fontFamily="@font/merriweather_sans"
+            android:hint="@string/prompt_password"
+            android:textSize="15sp"
+            android:typeface="normal"/>
+    </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/login_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/login_button"
         android:text="@string/login"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password_field"
-        app:layout_constraintVertical_bias="0.19"
-        android:background="@drawable/login_button"/>
+        app:layout_constraintTop_toBottomOf="@+id/password_prompt"
+        app:layout_constraintVertical_bias="0.110000014" />
 
     <TextView
         android:id="@+id/textView8"
