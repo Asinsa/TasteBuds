@@ -75,6 +75,8 @@
         android:layout_marginBottom="16dp"
         android:clickable="true"
         android:src="@drawable/ic_map_24"
+        app:backgroundTint="@color/primaryLightColor"
+        app:tint="@color/purple_700"
         app:layout_constraintBottom_toBottomOf="@+id/trending_recycler_view"
         app:layout_constraintEnd_toEndOf="parent" />
 

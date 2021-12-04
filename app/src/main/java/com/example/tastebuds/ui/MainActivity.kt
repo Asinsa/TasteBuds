@@ -9,12 +9,14 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.tastebuds.R
 import com.example.tastebuds.databinding.ActivityMainBinding
+import com.example.tastebuds.ui.account.LoginFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private var userEmail: String? = null
+    private var loggedIn = false;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,7 +31,6 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
 
         navView.setupWithNavController(navController)
-
 
         /*
         val bottomNavigation = findViewById<BottomNavigationView>(R.id.bottomNavigation)
@@ -57,6 +58,14 @@ class MainActivity : AppCompatActivity() {
 
     fun setUser(email: String?) {
         userEmail = email
+    }
+
+    fun checkLoggedIn(): Boolean {
+        return loggedIn
+    }
+
+    fun isLoggedIn() {
+        loggedIn = true
     }
 
 }

@@ -23,7 +23,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="file:/$USER_HOME$/AppData/Local/Android/Sdk/icons/material/materialicons/arrow_forward/baseline_arrow_forward_24.xml" />
+                                      <entry key="url" value="file:/$USER_HOME$/AppData/Local/Android/Sdk/icons/material/materialiconssharp/pin_drop/sharp_pin_drop_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -33,7 +33,8 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="ic_baseline_arrow_forward_24" />
+                            <entry key="color" value="4132c8" />
+                            <entry key="outputName" value="ic_sharp_pin_drop_24" />
                             <entry key="sourceFile" value="D:\Documents\MobileApps\TasteBuds" />
                           </map>
                         </option>
