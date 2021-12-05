@@ -20,174 +20,207 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/restaurant_subtitle"
-        android:layout_width="240dp"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/merriweather_sans"
-        android:text="@string/restaurant_details"
-        android:textColor="@color/white"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:typeface="normal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.14"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/review_toolbar"
-        app:layout_constraintVertical_bias="0.028" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/restaurant_prompt"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.15"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/restaurant_subtitle"
-        app:layout_constraintVertical_bias="0.01999998">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/restaurant_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:fontFamily="@font/merriweather_sans"
-            android:hint="@string/restaurant"
-            android:inputType="textShortMessage"
-            android:maxLines="1"
-            android:textSize="15sp"
-            android:typeface="normal" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/restaurant_location_prompt"
-        android:layout_width="221dp"
-        android:layout_height="53dp"
-        android:layout_marginTop="5dp"
-        android:ems="10"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.09"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/restaurant_prompt">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/restaurant_location"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:fontFamily="@font/merriweather_sans"
-            android:hint="@string/restaurant_location"
-            android:inputType="textShortMessage"
-            android:maxLines="1"
-            android:textSize="15sp"
-            android:typeface="normal" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/review_subtitle"
-        android:layout_width="240dp"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/merriweather_sans"
-        android:text="@string/review_details"
-        android:textColor="@color/white"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:typeface="normal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.14"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/restaurant_location_prompt"
-        app:layout_constraintVertical_bias="0.060000002" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/restaurant_title_prompt"
-        android:layout_width="300dp"
-        android:layout_height="45dp"
-        android:ems="10"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.11"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/review_subtitle"
-        app:layout_constraintVertical_bias="0.01999998">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/restaurant_title"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:fontFamily="@font/merriweather_sans"
-            android:hint="@string/review_title"
-            android:inputType="textShortMessage"
-            android:maxLines="1"
-            android:textSize="15sp"
-            android:typeface="normal" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/upload_pictures_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="16dp"
-        android:text="@string/pics"
-        app:icon="@drawable/ic_camera_24"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/restaurant_title_prompt" />
-
-    <androidx.appcompat.widget.AppCompatRatingBar
-        android:id="@+id/ratingBar"
-        style="@style/Widget.AppCompat.RatingBar.Indicator"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        app:layout_constraintEnd_toStartOf="@+id/upload_pictures_button"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/restaurant_title_prompt" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/review_prompt"
-        android:layout_width="386dp"
-        android:layout_height="140dp"
-        android:textAlignment="viewStart"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <ScrollView
+        android:layout_width="365dp"
+        android:layout_height="match_parent"
+        android:layout_marginTop="60dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/upload_pictures_button"
-        app:layout_constraintVertical_bias="0.04000002">
+        app:layout_constraintTop_toBottomOf="@+id/review_toolbar">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/review_body"
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@android:color/transparent"
-            android:fontFamily="@font/merriweather_sans"
-            android:gravity="top|start"
-            android:hint="@string/review_body"
-            android:inputType="textMultiLine"
-            android:lines="8"
-            android:maxLines="10"
-            android:minLines="6"
-            android:scrollbars="vertical"
-            android:textAlignment="textStart"
-            android:textSize="15sp"
-            android:typeface="normal" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:orientation="vertical">
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/submit_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/submit"
-        app:icon="@drawable/ic_submit_24"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/review_prompt"
-        app:layout_constraintVertical_bias="0.488" />
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/restaurant_subtitle"
+                android:layout_width="240dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/merriweather_sans"
+                android:text="@string/restaurant_details"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:typeface="normal"
+                android:paddingTop="20dp"
+                android:paddingBottom="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.14"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/review_toolbar"
+                app:layout_constraintVertical_bias="0.028" />
 
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/restaurant_prompt"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.15"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/restaurant_subtitle"
+                app:layout_constraintVertical_bias="0.01999998">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/restaurant_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/merriweather_sans"
+                    android:hint="@string/restaurant"
+                    android:inputType="textShortMessage"
+                    android:maxLines="1"
+                    android:textSize="15sp"
+                    android:typeface="normal" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/restaurant_location_prompt"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="221dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:ems="10"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.09"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/restaurant_prompt">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/restaurant_location"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/merriweather_sans"
+                    android:hint="@string/restaurant_location"
+                    android:inputType="textShortMessage"
+                    android:maxLines="1"
+                    android:textSize="15sp"
+                    android:typeface="normal" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/review_subtitle"
+                android:layout_width="240dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/merriweather_sans"
+                android:text="@string/review_details"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:typeface="normal"
+                android:paddingTop="20dp"
+                android:paddingBottom="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.14"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/restaurant_location_prompt"
+                app:layout_constraintVertical_bias="0.060000002" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/restaurant_title_prompt"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.11"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/review_subtitle"
+                app:layout_constraintVertical_bias="0.01999998">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/restaurant_title"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/merriweather_sans"
+                    android:hint="@string/review_title"
+                    android:inputType="textShortMessage"
+                    android:maxLines="1"
+                    android:textSize="15sp"
+                    android:typeface="normal" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp">
+
+                <androidx.appcompat.widget.AppCompatRatingBar
+                    android:id="@+id/ratingBar"
+                    style="@style/Widget.AppCompat.RatingBar.Indicator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/upload_pictures_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|end"
+                    android:text="@string/pics"
+                    app:icon="@drawable/ic_camera_24"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/review_prompt"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="365dp"
+                android:layout_height="170dp"
+                android:textAlignment="viewStart"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/upload_pictures_button"
+                app:layout_constraintVertical_bias="0.04000002">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/review_body"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/merriweather_sans"
+                    android:gravity="top|start"
+                    android:hint="@string/review_body"
+                    android:inputType="textMultiLine"
+                    android:lines="8"
+                    android:maxLines="10"
+                    android:minLines="6"
+                    android:scrollbars="vertical"
+                    android:textAlignment="textStart"
+                    android:textSize="15sp"
+                    android:typeface="normal"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="20dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/submit_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="@string/submit"
+                app:icon="@drawable/ic_submit_24"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/review_prompt"
+                app:layout_constraintVertical_bias="0.488" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
