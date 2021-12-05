@@ -7,10 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.example.tastebuds.R
-import com.example.tastebuds.ui.MainActivity
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
@@ -28,10 +29,11 @@ private const val ARG_PARAM2 = "param2"
  */
 class LoginFragment : Fragment() {
     // TODO: Rename and change types of parameters
+    private val sharedViewModel: AccountViewModel by activityViewModels()
     private var param1: String? = null
     private var param2: String? = null
     private var mAuth = FirebaseAuth.getInstance()
-    private val activity = MainActivity().getMain()
+    //private val activity = MainActivity().getMain()
     var navController: NavController? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,25 +48,34 @@ class LoginFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        var rootView: View = inflater.inflate(R.layout.fragment_login, container, false)
+            return inflater.inflate(R.layout.fragment_login, container, false)
+    }
 
-        val emailText = rootView.findViewById<TextInputEditText>(R.id.email_field)
-        val passwordText = rootView.findViewById<TextInputEditText>(R.id.password_field)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val emailText = view.findViewById<TextInputEditText>(R.id.email_field)
+        val passwordText = view.findViewById<TextInputEditText>(R.id.password_field)
 
         // Login
-        val loginButton = rootView.findViewById<MaterialButton>(R.id.login_button)
+        val loginButton = view.findViewById<MaterialButton>(R.id.login_button)
         loginButton.setOnClickListener { view ->
             if (emailText.text.toString() != "" && passwordText.text.toString() != "") {
-                mAuth.signInWithEmailAndPassword(emailText.text.toString(), passwordText.text.toString()).addOnCompleteListener(activity) { task ->
-                    if (task.isSuccessful) {
-                        val user = mAuth.currentUser
-                        activity.setUser(user?.email)
-                        activity.logIn()
-                        navController = Navigation.findNavController(view)
-                        navController?.navigate(R.id.action_navigation_login_to_navigation_account)
-                    } else {
-                        closeKeyBoard()
-                        showMessage(view, getString(R.string.login_failed))
+                activity?.let {
+                    mAuth.signInWithEmailAndPassword(
+                        emailText.text.toString(),
+                        passwordText.text.toString()
+                    ).addOnCompleteListener(it) { task ->
+                        if (task.isSuccessful) {
+                            val user = mAuth.currentUser
+                            sharedViewModel.setEmail(user?.email.toString())
+                            sharedViewModel.logIn()
+                            Navigation.findNavController(view)
+                                .navigate(R.id.action_navigation_login_to_navigation_account)
+                        } else {
+                            closeKeyBoard()
+                            showMessage(view, getString(R.string.login_failed))
+                        }
                     }
                 }
             } else if (emailText.text.toString() == "") {
@@ -77,14 +88,11 @@ class LoginFragment : Fragment() {
         }
 
         // Sign up
-        val registerButton = rootView.findViewById<MaterialButton>(R.id.sign_up_page_button)
+        val registerButton = view.findViewById<MaterialButton>(R.id.sign_up_page_button)
         registerButton.setOnClickListener { view ->
             navController = Navigation.findNavController(view)
             navController?.navigate(R.id.action_navigation_login_to_navigation_register)
         }
-
-        // Inflate the layout for this fragment
-        return rootView
     }
 
     private fun showMessage (view: View, message: String) {
@@ -92,9 +100,9 @@ class LoginFragment : Fragment() {
     }
 
     private fun closeKeyBoard() {
-        val view = activity.currentFocus
+        val view = activity?.currentFocus
         if (view != null) {
-            val imm = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            val imm = activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             imm.hideSoftInputFromWindow(view.windowToken, 0)
         }
     }

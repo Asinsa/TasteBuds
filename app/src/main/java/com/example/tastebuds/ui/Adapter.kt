@@ -7,9 +7,7 @@ import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.restaurantreviewapp.Restaurant
 import com.example.tastebuds.R
-import com.google.android.material.snackbar.Snackbar
 
 class Adapter (private val restaurantArrayList: MutableList<Restaurant>) : RecyclerView.Adapter<Adapter.ViewHolder>() {
     /*

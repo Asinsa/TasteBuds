@@ -7,13 +7,19 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
+import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.tastebuds.R
 import com.example.tastebuds.databinding.ActivityMainBinding
 import com.example.tastebuds.databinding.FragmentHomeBinding
 import com.example.tastebuds.ui.account.AccountFragment
+import com.example.tastebuds.ui.account.AccountViewModel
 import com.example.tastebuds.ui.account.LoginFragment
 import com.example.tastebuds.ui.favourites.FavouritesFragment
 import com.example.tastebuds.ui.home.HomeFragment
@@ -23,8 +29,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private var userEmail: String? = null
-    private var loggedIn = false;
+    private lateinit var viewModel: AccountViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,21 +44,24 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
 
         navView.setupWithNavController(navController)
-
+        
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigation)
+
+        /*
+        viewModel = ViewModelProvider(this).get(AccountViewModel::class.java)
         bottomNavigationView.setOnNavigationItemSelectedListener { item ->
             System.out.println(item.itemId.toString() + "OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO" + R.id.navigation_login.toString())
             if (item.itemId == R.id.navigation_login){  //navigate to Fragment1 or Fragment2
-                System.out.println(loggedIn.toString() + "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
-                if (loggedIn) {
-                    supportFragmentManager.beginTransaction().apply {
-                        replace(R.id.nav_host_fragment_activity_main, AccountFragment())
-                        commit()
-                    }
+                System.out.println(viewModel.getEmail() + "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+                if (viewModel.loggedIn()) {
+                    val newFragment: Fragment = AccountFragment()
+                    val transaction = supportFragmentManager.beginTransaction()
+                    transaction.replace(R.id.navigation_login, newFragment)
+                    transaction.addToBackStack(null)
+                    transaction.commit()
                 } else {
                     supportFragmentManager.beginTransaction().apply {
-                        replace(R.id.nav_host_fragment_activity_main, LoginFragment())
-                        commit()
+                        replace(R.id.nav_host_fragment_activity_main, LoginFragment()).commit()
                     }
                 }
 
@@ -61,7 +69,12 @@ class MainActivity : AppCompatActivity() {
             //Trigger the original listener for the other items
             NavigationUI.onNavDestinationSelected(item, navController)
             true
+
         }
+
+         */
+
+
 
         /*
         val bottomNavigation = findViewById<BottomNavigationView>(R.id.bottomNavigation)
@@ -112,16 +125,5 @@ class MainActivity : AppCompatActivity() {
         return this
     }
 
-    fun setUser(email: String?) {
-        userEmail = email
-    }
-
-    fun loggedIn(): Boolean {
-        return loggedIn
-    }
-
-    fun logIn() {
-        loggedIn = true
-    }
 
 }

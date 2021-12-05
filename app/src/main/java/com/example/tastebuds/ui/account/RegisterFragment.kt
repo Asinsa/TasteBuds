@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.example.tastebuds.R
@@ -15,6 +16,8 @@ import com.google.android.material.button.MaterialButton
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -28,6 +31,7 @@ private const val ARG_PARAM2 = "param2"
  */
 class RegisterFragment : Fragment() {
     // TODO: Rename and change types of parameters
+    private val sharedViewModel: AccountViewModel by activityViewModels()
     private var param1: String? = null
     private var param2: String? = null
     private var mAuth = FirebaseAuth.getInstance()
@@ -46,58 +50,83 @@ class RegisterFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        var rootView: View = inflater.inflate(R.layout.fragment_register, container, false)
-        val emailText = rootView.findViewById<TextInputEditText>(R.id.email_field)
-        val passwordText = rootView.findViewById<TextInputEditText>(R.id.password_field)
-        val confirmPasswordText =
-            rootView.findViewById<TextInputEditText>(R.id.confirm_password_field)
+        return inflater.inflate(R.layout.fragment_register, container, false)
+    }
 
-        // Register
-        val registerButton = rootView.findViewById<MaterialButton>(R.id.register_button)
-        registerButton.setOnClickListener { view ->
-            if (emailText.text.toString() != "" && passwordText.text.toString() != "") {
-                if (passwordText.text.toString() == confirmPasswordText.text.toString() && passwordText.text.toString().length >= 8) {
-                    mAuth.createUserWithEmailAndPassword(
-                        emailText.text.toString(),
-                        passwordText.text.toString()
-                    ).addOnCompleteListener(activity) { task ->
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        if (!sharedViewModel.loggedIn()!!) {
+            super.onViewCreated(view, savedInstanceState)
+
+            val displayNameText = view.findViewById<TextInputEditText>(R.id.displayName_field)
+            val firstNameText = view.findViewById<TextInputEditText>(R.id.firstName_field)
+            val lastNameText = view.findViewById<TextInputEditText>(R.id.lastName_field)
+            val emailText = view.findViewById<TextInputEditText>(R.id.email_field)
+            val passwordText = view.findViewById<TextInputEditText>(R.id.password_field)
+            val confirmPasswordText = view.findViewById<TextInputEditText>(R.id.confirm_password_field)
+
+            // Register
+            val registerButton = view.findViewById<MaterialButton>(R.id.register_button)
+            registerButton.setOnClickListener { view ->
+                if (isComplete(displayNameText, firstNameText, lastNameText, emailText, passwordText, confirmPasswordText)) {
+                    if (passwordText.text.toString() == confirmPasswordText.text.toString() && passwordText.text.toString().length >= 8) {
+                        mAuth.createUserWithEmailAndPassword(
+                            emailText.text.toString(),
+                            passwordText.text.toString()
+                        ).addOnCompleteListener(activity) { task ->
                             if (task.isSuccessful) {
+                                registerUser(emailText.toString(), emailText.toString(), emailText.toString(), emailText.toString())
                                 showMessage(view, getString(R.string.register_success))
-                                val user = mAuth.currentUser
-                                activity.setUser(user?.email)
-                                activity.logIn()
-                                navController = Navigation.findNavController(view)
-                                navController?.navigate(R.id.action_navigation_register_to_navigation_account)
+                                Navigation.findNavController(view).navigate(R.id.action_navigation_register_to_navigation_account)
                             } else {
                                 closeKeyBoard()
                                 showMessage(view, getString(R.string.register_failed))
                             }
                         }
-                } else if (passwordText.text.toString().length >= 8) {
-                    passwordText.error = getString(R.string.password_too_short)
+                    } else if (passwordText.text.toString().length >= 8) {
+                        passwordText.error = getString(R.string.password_too_short)
+                        passwordText.requestFocus()
+                    } else {
+                        confirmPasswordText.error = getString(R.string.password_no_match)
+                        confirmPasswordText.requestFocus()
+                    }
+                } else if (emailText.text.toString() == "") {
+                    emailText.error = getString(R.string.empty_email)
+                    emailText.requestFocus()
+                } else if (passwordText.text.toString() == "" || confirmPasswordText.text.toString() == "") {
+                    passwordText.error = getString(R.string.empty_password)
                     passwordText.requestFocus()
-                } else {
-                    confirmPasswordText.error = getString(R.string.password_no_match)
                     confirmPasswordText.requestFocus()
+                } else {
+                    //TODO
                 }
-            } else if (emailText.text.toString() == "") {
-                emailText.error = getString(R.string.empty_email)
-                emailText.requestFocus()
-            } else {
-                passwordText.error = getString(R.string.empty_password)
-                passwordText.requestFocus()
+            }
+
+            // Login
+            val loginButton = view.findViewById<MaterialButton>(R.id.login_page_button)
+            loginButton.setOnClickListener { view ->
+                navController = Navigation.findNavController(view)
+                navController?.navigate(R.id.action_navigation_register_to_navigation_login)
             }
         }
+    }
 
-        // Login
-        val loginButton = rootView.findViewById<MaterialButton>(R.id.login_page_button)
-        loginButton.setOnClickListener { view ->
-            navController = Navigation.findNavController(view)
-            navController?.navigate(R.id.action_navigation_login_to_navigation_register)
-        }
+    private fun isComplete(field1: TextInputEditText, field2: TextInputEditText, field3: TextInputEditText, field4: TextInputEditText, field5: TextInputEditText, field6: TextInputEditText): Boolean {
+        return field1.text.toString() != "" &&
+                field2.text.toString() != "" &&
+                field3.text.toString() != "" &&
+                field4.text.toString() != "" &&
+                field5.text.toString() != "" &&
+                field6.text.toString() != ""
+    }
 
-        // Inflate the layout for this fragment
-        return rootView
+    private fun registerUser(email: String, displayName: String, firstName: String, lastName: String) {
+        val newUser = User(email, displayName, firstName, lastName)
+
+        val user = mAuth.currentUser
+        sharedViewModel.setEmail(user?.email.toString())
+        sharedViewModel.logIn()
+
+        Firebase.database.getReference("Users").child(user!!.uid).setValue(newUser)
     }
 
     private fun showMessage (view: View, message: String) {

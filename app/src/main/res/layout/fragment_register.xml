@@ -17,37 +17,107 @@
         android:textSize="34sp"
         android:textStyle="bold"
         android:typeface="normal"
-        app:layout_constraintBottom_toTopOf="@+id/email_prompt"
+        app:layout_constraintBottom_toTopOf="@+id/displayName_prompt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.263"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.66" />
+        app:layout_constraintVertical_bias="0.75" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/displayName_prompt"
+        android:layout_width="310dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:ems="10"
+        app:layout_constraintBottom_toTopOf="@+id/firstName_prompt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.44"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/displayName_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/merriweather_sans"
+            android:hint="@string/prompt_displayName"
+            android:inputType="textShortMessage"
+            android:maxLines="1"
+            android:textSize="15sp"
+            android:typeface="normal" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/firstName_prompt"
+        android:layout_width="310dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:ems="10"
+        app:layout_constraintBottom_toTopOf="@+id/lastName_prompt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.44"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/firstName_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/merriweather_sans"
+            android:hint="@string/prompt_firstName"
+            android:inputType="textShortMessage"
+            android:maxLines="1"
+            android:textSize="15sp"
+            android:typeface="normal" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/lastName_prompt"
+        android:layout_width="310dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:ems="10"
+        app:layout_constraintBottom_toTopOf="@+id/email_prompt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.44"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/lastName_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/merriweather_sans"
+            android:hint="@string/prompt_lastName"
+            android:inputType="textShortMessage"
+            android:maxLines="1"
+            android:textSize="15sp"
+            android:typeface="normal" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/email_prompt"
         android:layout_width="310dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
         android:ems="10"
         app:layout_constraintBottom_toTopOf="@+id/password_prompt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.445"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.9">
+        app:layout_constraintStart_toStartOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/email_field"
-            android:background="@android:color/transparent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"
-            android:maxLines="1"
+            android:background="@android:color/transparent"
             android:fontFamily="@font/merriweather_sans"
             android:hint="@string/prompt_email"
+            android:inputType="textEmailAddress"
+            android:maxLines="1"
             android:textSize="15sp"
-            android:typeface="normal"
-            />
+            android:typeface="normal" />
     </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -55,24 +125,24 @@
         android:id="@+id/password_prompt"
         android:layout_width="310dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
         android:ems="10"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/confirm_password_prompt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.445"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.43">
+        app:layout_constraintStart_toStartOf="parent">
+
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/password_field"
-            android:background="@android:color/transparent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:maxLines="1"
+            android:background="@android:color/transparent"
             android:fontFamily="@font/merriweather_sans"
             android:hint="@string/prompt_password"
+            android:inputType="textPassword"
+            android:maxLines="1"
             android:textSize="15sp"
-            android:typeface="normal"/>
+            android:typeface="normal" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -85,7 +155,7 @@
         app:layout_constraintHorizontal_bias="0.445"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.55">
+        app:layout_constraintVertical_bias="0.74">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/confirm_password_field"
@@ -111,31 +181,34 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/confirm_password_prompt"
-        app:layout_constraintVertical_bias="0.108" />
+        app:layout_constraintVertical_bias="0.18" />
 
-    <TextView
-        android:id="@+id/yes_account_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/have_account"
-        android:textColor="@color/red"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toTopOf="@+id/login_page_button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/login_page_button"
-        android:layout_width="119dp"
-        android:layout_height="37dp"
-        android:background="@android:color/transparent"
-        android:text="@string/sign_in"
-        android:textColor="@color/red"
+    <LinearLayout
+        android:layout_width="261dp"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.976" />
+        app:layout_constraintTop_toBottomOf="@+id/register_button"
+        app:layout_constraintVertical_bias="0.74">
+
+        <TextView
+            android:id="@+id/yes_account_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/have_account"
+            android:textColor="@color/red"
+            android:textSize="15sp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/login_page_button"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:includeFontPadding="false"
+            android:text="@string/sign_in"
+            android:textColor="@color/red" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

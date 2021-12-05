@@ -1,24 +1,14 @@
 package com.example.tastebuds.ui.home
 
-import android.app.SearchManager
-import android.content.Context
 import android.os.Bundle
 import android.view.*
-import android.widget.EditText
 import androidx.fragment.app.Fragment
-import android.widget.Toolbar
-import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.SearchView
-import androidx.core.content.ContextCompat.getSystemService
-import androidx.core.content.res.ColorStateListInflaterCompat.inflate
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.restaurantreviewapp.Restaurant
 import com.example.tastebuds.R
-import com.example.tastebuds.databinding.ActivityMainBinding
-import com.example.tastebuds.databinding.ActivityMainBinding.inflate
 import com.example.tastebuds.ui.Adapter
 import com.example.tastebuds.ui.MainActivity
+import com.example.tastebuds.ui.Restaurant
 import kotlin.random.Random
 
 // TODO: Rename parameter arguments, choose names that match
@@ -49,19 +39,21 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        return inflater.inflate(R.layout.fragment_home, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         // List of restaurants
         val restaurantArrayList = populateList()
 
-        val rootView: View = inflater.inflate(R.layout.fragment_home, container, false)
-        val recyclerView = rootView.findViewById<View>(R.id.trending_recycler_view) as RecyclerView // Bind to the recyclerview in the layout
+        val recyclerView = view.findViewById<View>(R.id.trending_recycler_view) as RecyclerView // Bind to the recyclerview in the layout
 
         val layoutManager = LinearLayoutManager(activity) // Get the layout manager
         recyclerView.layoutManager = layoutManager
         val mAdapter = Adapter(restaurantArrayList)
         recyclerView.adapter = mAdapter
 
-        // Inflate the layout for this fragment
-        return rootView
     }
 
     companion object {

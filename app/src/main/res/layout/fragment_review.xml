@@ -66,7 +66,7 @@
         android:id="@+id/restaurant_location_prompt"
         android:layout_width="221dp"
         android:layout_height="53dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="5dp"
         android:ems="10"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.09"
@@ -101,16 +101,16 @@
         app:layout_constraintHorizontal_bias="0.14"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/restaurant_location_prompt"
-        app:layout_constraintVertical_bias="0.095" />
+        app:layout_constraintVertical_bias="0.060000002" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/restaurant_title_prompt"
         android:layout_width="300dp"
-        android:layout_height="wrap_content"
+        android:layout_height="45dp"
         android:ems="10"
-        app:layout_constraintHorizontal_bias="0.11"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.11"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/review_subtitle"
         app:layout_constraintVertical_bias="0.01999998">
@@ -132,7 +132,7 @@
         android:id="@+id/upload_pictures_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="16dp"
         android:text="@string/pics"
         app:icon="@drawable/ic_camera_24"
@@ -144,21 +144,21 @@
         style="@style/Widget.AppCompat.RatingBar.Indicator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="5dp"
         app:layout_constraintEnd_toStartOf="@+id/upload_pictures_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/restaurant_title_prompt" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/review_prompt"
-        android:layout_width="412dp"
-        android:layout_height="282dp"
+        android:layout_width="386dp"
+        android:layout_height="140dp"
         android:textAlignment="viewStart"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/upload_pictures_button"
-        app:layout_constraintVertical_bias="0.110000014">
+        app:layout_constraintVertical_bias="0.04000002">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/review_body"
@@ -177,5 +177,17 @@
             android:textSize="15sp"
             android:typeface="normal" />
     </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/submit_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/submit"
+        app:icon="@drawable/ic_submit_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/review_prompt"
+        app:layout_constraintVertical_bias="0.488" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

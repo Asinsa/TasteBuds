@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
     app:startDestination="@+id/navigation_home">
-
     <fragment
         android:id="@+id/navigation_home"
         android:name="com.example.tastebuds.ui.home.HomeFragment"
@@ -26,6 +25,18 @@
         android:label="@string/title_account"
         tools:layout="@layout/fragment_account" />
     <fragment
+        android:id="@+id/navigation_transfer"
+        android:name="com.example.tastebuds.ui.account.TransferFragment"
+        android:label="@string/login"
+        tools:layout="@layout/fragment_transfer" >
+        <action
+            android:id="@+id/action_navigation_transfer_to_navigation_login"
+            app:destination="@id/navigation_login" />
+        <action
+            android:id="@+id/action_navigation_transfer_to_navigation_account"
+            app:destination="@id/navigation_account" />
+    </fragment>
+    <fragment
         android:id="@+id/navigation_login"
         android:name="com.example.tastebuds.ui.account.LoginFragment"
         android:label="@string/login"
@@ -45,5 +56,8 @@
         <action
             android:id="@+id/action_navigation_register_to_navigation_account"
             app:destination="@id/navigation_account" />
+        <action
+            android:id="@+id/action_navigation_register_to_navigation_login"
+            app:destination="@id/navigation_login" />
     </fragment>
 </navigation>
