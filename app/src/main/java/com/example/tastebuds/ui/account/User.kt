@@ -1,7 +1,7 @@
 package com.example.tastebuds.ui.account
 
 class User(userId: String, displayName: String, firstName: String, lastName: String) {
-    var email: String? = null
+    private var email: String? = null
     private var displayName: String? = null
     private var firstName: String? = null
     private var lastName: String? = null
@@ -13,13 +13,11 @@ class User(userId: String, displayName: String, firstName: String, lastName: Str
         this.lastName = lastName.capitalize()
     }
 
-    @JvmName("getEmail1")
-    fun getEmail(): String {
+    fun getUserId(): String {
         return email.toString()
     }
 
-    @JvmName("setEmail1")
-    fun setEmail(email: String) {
+    fun setUserId(email: String) {
         this.email = email
     }
 

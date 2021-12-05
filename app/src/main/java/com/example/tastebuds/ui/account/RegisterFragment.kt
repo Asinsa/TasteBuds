@@ -74,7 +74,7 @@ class RegisterFragment : Fragment() {
                             passwordText.text.toString()
                         ).addOnCompleteListener(activity) { task ->
                             if (task.isSuccessful) {
-                                registerUser(emailText.toString(), emailText.toString(), emailText.toString(), emailText.toString())
+                                registerUser(displayNameText.text.toString(), firstNameText.text.toString(), lastNameText.text.toString(), emailText.text.toString())
                                 showMessage(view, getString(R.string.register_success))
                                 Navigation.findNavController(view).navigate(R.id.action_navigation_register_to_navigation_account)
                             } else {
@@ -92,10 +92,9 @@ class RegisterFragment : Fragment() {
                 } else if (emailText.text.toString() == "") {
                     emailText.error = getString(R.string.empty_email)
                     emailText.requestFocus()
-                } else if (passwordText.text.toString() == "" || confirmPasswordText.text.toString() == "") {
+                } else if (passwordText.text.toString() == "") {
                     passwordText.error = getString(R.string.empty_password)
                     passwordText.requestFocus()
-                    confirmPasswordText.requestFocus()
                 } else {
                     //TODO
                 }
@@ -119,7 +118,7 @@ class RegisterFragment : Fragment() {
                 field6.text.toString() != ""
     }
 
-    private fun registerUser(email: String, displayName: String, firstName: String, lastName: String) {
+    private fun registerUser(displayName: String, firstName: String, lastName: String, email: String) {
         val newUser = User(email, displayName, firstName, lastName)
 
         val user = mAuth.currentUser
