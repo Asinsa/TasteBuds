@@ -4,8 +4,14 @@ import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.appcompat.widget.Toolbar
+import androidx.fragment.app.activityViewModels
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tastebuds.R
+import com.example.tastebuds.ui.account.AccountViewModel
+import com.google.android.material.button.MaterialButton
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.snackbar.Snackbar
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -19,6 +25,7 @@ private const val ARG_PARAM2 = "param2"
  */
 class ReviewFragment : Fragment() {
     // TODO: Rename and change types of parameters
+    private val sharedViewModel: AccountViewModel by activityViewModels()
     private var param1: String? = null
     private var param2: String? = null
 
@@ -40,8 +47,17 @@ class ReviewFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val gg = view.findViewById<Toolbar>(R.id.review_toolbar) as Toolbar
-        gg.setNavigationIcon(R.drawable.ic_notifications_black_24dp)
+        val newReviewButton = view.findViewById<FloatingActionButton>(R.id.new_review_button)
+        newReviewButton.setOnClickListener { view ->
+            if (sharedViewModel.loggedIn()) {
+                Navigation.findNavController(view)
+                    .navigate(R.id.action_navigation_review_to_navigation_new_review)
+            }
+            else {
+                Snackbar.make (view, getString(R.string.need_login), Snackbar.LENGTH_LONG).show()
+                Navigation.findNavController(view).navigate(R.id.action_navigation_review_to_navigation_login)
+            }
+        }
     }
 
     companion object {

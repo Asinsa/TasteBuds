@@ -70,13 +70,34 @@
                       </LayoutPositions>
                     </value>
                   </entry>
+                  <entry key="navigation_new_review">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="-708" />
+                            <option name="y" value="291" />
+                          </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_navigation_new_review_to_navigation_review">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
                   <entry key="navigation_register">
                     <value>
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="108" />
-                            <option name="y" value="-73" />
+                            <option name="x" value="128" />
+                            <option name="y" value="-152" />
                           </Point>
                         </option>
                         <option name="myPositions">
@@ -105,6 +126,15 @@
                             <option name="y" value="-122" />
                           </Point>
                         </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_navigation_review_to_navigation_new_review">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
                       </LayoutPositions>
                     </value>
                   </entry>
@@ -119,6 +149,11 @@
                         </option>
                         <option name="myPositions">
                           <map>
+                            <entry key="action_navigation_transfer_to_navigation_account">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
                             <entry key="action_navigation_transfer_to_navigation_login">
                               <value>
                                 <LayoutPositions />
