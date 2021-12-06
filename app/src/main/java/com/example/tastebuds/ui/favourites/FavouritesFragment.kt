@@ -40,7 +40,7 @@ class FavouritesFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val gg = view.findViewById<Toolbar>(R.id.review_toolbar) as Toolbar
+        val gg = view.findViewById<Toolbar>(R.id.favourites_toolbar) as Toolbar
         gg.setNavigationIcon(R.drawable.ic_notifications_black_24dp)
     }
 

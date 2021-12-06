@@ -49,14 +49,20 @@ class ReviewFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val newReviewButton = view.findViewById<FloatingActionButton>(R.id.new_review_button)
         newReviewButton.setOnClickListener { view ->
+            Navigation.findNavController(view)
+                .navigate(R.id.action_navigation_review_to_navigation_new_review)
+            /*
             if (sharedViewModel.loggedIn()) {
                 Navigation.findNavController(view)
                     .navigate(R.id.action_navigation_review_to_navigation_new_review)
             }
             else {
+                 TODO: UNCOMMNT THIS
                 Snackbar.make (view, getString(R.string.need_login), Snackbar.LENGTH_LONG).show()
                 Navigation.findNavController(view).navigate(R.id.action_navigation_review_to_navigation_login)
             }
+
+             */
         }
     }
 

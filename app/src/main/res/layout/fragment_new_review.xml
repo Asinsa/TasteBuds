@@ -122,7 +122,7 @@
                 app:layout_constraintVertical_bias="0.060000002" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/restaurant_title_prompt"
+                android:id="@+id/review_title_prompt"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
@@ -135,7 +135,7 @@
                 app:layout_constraintVertical_bias="0.01999998">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/restaurant_title"
+                    android:id="@+id/review_title"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/merriweather_sans"
@@ -154,10 +154,17 @@
 
                 <androidx.appcompat.widget.AppCompatRatingBar
                     android:id="@+id/ratingBar"
-                    style="@style/Widget.AppCompat.RatingBar.Indicator"
+                    style="@style/Widget.AppCompat.RatingBar.Small"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:numStars="5"
+                    android:progressTint="@color/secondaryColor"
+                    android:scaleX="2"
+                    android:scaleY="2"
+                    android:stepSize="1"
                     app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/upload_pictures_button"
+                    app:layout_constraintHorizontal_bias="0.31"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 

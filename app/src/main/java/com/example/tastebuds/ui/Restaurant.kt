@@ -2,6 +2,7 @@ package com.example.tastebuds.ui
 
 class Restaurant {
     var restaurantName: String? = null
+    private var restaurantLocation: String? = null
     private var restaurantImage: Int = 0
     private var restaurantRating: Double = 0.0
     private var distance: Int = 0
