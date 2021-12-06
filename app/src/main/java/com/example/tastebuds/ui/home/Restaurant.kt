@@ -1,4 +1,4 @@
-package com.example.tastebuds.ui
+package com.example.tastebuds.ui.home
 
 class Restaurant {
     var restaurantName: String? = null

@@ -68,6 +68,7 @@ class NewReviewFragment : Fragment() {
         val reviewBody = view.findViewById<TextInputEditText>(R.id.review_body)
 
         // Rating bar
+
         starRating.setOnRatingBarChangeListener { p0, p1, p2 ->
 
         }

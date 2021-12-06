@@ -154,17 +154,17 @@
 
                 <androidx.appcompat.widget.AppCompatRatingBar
                     android:id="@+id/ratingBar"
-                    style="@style/Widget.AppCompat.RatingBar.Small"
+                    style="@style/Widget.AppCompat.RatingBar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:numStars="5"
                     android:progressTint="@color/secondaryColor"
-                    android:scaleX="2"
-                    android:scaleY="2"
+                    android:scaleX="0.75"
+                    android:scaleY="0.75"
                     android:stepSize="1"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/upload_pictures_button"
-                    app:layout_constraintHorizontal_bias="0.31"
+                    app:layout_constraintHorizontal_bias="0.756"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 

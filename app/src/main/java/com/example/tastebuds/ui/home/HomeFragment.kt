@@ -6,9 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tastebuds.R
-import com.example.tastebuds.ui.Adapter
 import com.example.tastebuds.ui.MainActivity
-import com.example.tastebuds.ui.Restaurant
 import kotlin.random.Random
 
 // TODO: Rename parameter arguments, choose names that match
@@ -51,7 +49,7 @@ class HomeFragment : Fragment() {
 
         val layoutManager = LinearLayoutManager(activity) // Get the layout manager
         recyclerView.layoutManager = layoutManager
-        val mAdapter = Adapter(restaurantArrayList)
+        val mAdapter = RestaurantAdapter(restaurantArrayList)
         recyclerView.adapter = mAdapter
 
     }

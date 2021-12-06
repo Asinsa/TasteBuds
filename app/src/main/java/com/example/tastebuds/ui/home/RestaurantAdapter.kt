@@ -1,4 +1,4 @@
-package com.example.tastebuds.ui
+package com.example.tastebuds.ui.home
 
 import android.view.LayoutInflater
 import android.view.View
@@ -9,7 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tastebuds.R
 
-class Adapter (private val restaurantArrayList: MutableList<Restaurant>) : RecyclerView.Adapter<Adapter.ViewHolder>() {
+class RestaurantAdapter (private val restaurantArrayList: MutableList<Restaurant>) : RecyclerView.Adapter<RestaurantAdapter.ViewHolder>() {
     /*
          * Inflate our views using the layout defined in row_layout.xml
          */
