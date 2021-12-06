@@ -6,7 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.Navigation
 import com.example.tastebuds.R
+import com.google.android.material.button.MaterialButton
+import com.google.firebase.auth.FirebaseAuth
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -22,6 +25,7 @@ class AccountFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    var mAuth = FirebaseAuth.getInstance()
     private val accountViewModel: AccountViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,6 +42,27 @@ class AccountFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_account, container, false)
+    }
+
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        // Log out
+        val logOffButton = view.findViewById<MaterialButton>(R.id.log_off_button)
+        logOffButton.setOnClickListener{ view ->
+           // showMessage (view, "Logging you out.")
+            signOut()
+        }
+        mAuth.addAuthStateListener {
+            if (mAuth.currentUser == null){
+                activity?.finish()
+            }
+        }
+    }
+
+    private fun signOut(){
+        mAuth.signOut()
     }
 
     companion object {
