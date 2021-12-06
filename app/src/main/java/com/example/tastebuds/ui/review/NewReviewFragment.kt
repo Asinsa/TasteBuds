@@ -18,6 +18,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import java.time.LocalDateTime
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -68,7 +69,6 @@ class NewReviewFragment : Fragment() {
         val reviewBody = view.findViewById<TextInputEditText>(R.id.review_body)
 
         // Rating bar
-
         starRating.setOnRatingBarChangeListener { p0, p1, p2 ->
 
         }
@@ -85,7 +85,6 @@ class NewReviewFragment : Fragment() {
                 starRating.rating.toDouble(),
                 reviewBody.text.toString()
             )
-
             if (complete) {
                 showMessage(view, getString(R.string.review_success))
                 Navigation.findNavController(view).navigate(R.id.action_navigation_new_review_to_navigation_review)
@@ -94,6 +93,20 @@ class NewReviewFragment : Fragment() {
                 showMessage(view, getString(R.string.save_review))
                 Navigation.findNavController(view).navigate(R.id.action_navigation_new_review_to_navigation_review)
             }
+        }
+
+        //On Save
+        val saveButton = view.findViewById<MaterialButton>(R.id.save_button)
+        saveButton.setOnClickListener { view ->
+            saveAndSubmitReview(
+                false, restaurantName.text.toString(),
+                restaurantLocation.text.toString(),
+                reviewTitle.text.toString(),
+                starRating.rating.toDouble(),
+                reviewBody.text.toString()
+            )
+            showMessage(view, getString(R.string.save_review))
+            Navigation.findNavController(view).navigate(R.id.action_navigation_new_review_to_navigation_review)
         }
     }
 
@@ -106,8 +119,9 @@ class NewReviewFragment : Fragment() {
     }
 
     private fun saveAndSubmitReview(isComplete: Boolean, restaurantName: String, restaurantLocation: String, reviewTitle: String, starRating: Double, reviewBody: String) {
-        val review = Review(restaurantName, restaurantLocation, reviewTitle, starRating, reviewBody)
         val user = sharedViewModel.getUser()
+
+        val review = Review(restaurantName, restaurantLocation, reviewTitle, starRating, reviewBody, user.uid, LocalDateTime.now())
 
         if (isComplete) {
             Firebase.database.getReference("Reviews").child(user.uid).setValue(review)

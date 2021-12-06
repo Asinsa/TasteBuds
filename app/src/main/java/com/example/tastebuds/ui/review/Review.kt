@@ -1,11 +1,17 @@
 package com.example.tastebuds.ui.review
 
-class Review (restaurant: String, location: String, title: String, rating: Double, review: String) {
+import com.google.firebase.auth.FirebaseUser
+import java.time.LocalDateTime
+import java.util.*
+
+class Review (restaurant: String, location: String, title: String, rating: Double, review: String, userId: String, date: LocalDateTime) {
     private var restaurant: String? = null
     private var location: String? = null
     private var title: String? = null
     private var rating: Double = 0.0
     private var review: String? = null
+    private var userId: String? = null
+    private var date: LocalDateTime? = null
 
     init {
         this.restaurant = restaurant
@@ -13,6 +19,8 @@ class Review (restaurant: String, location: String, title: String, rating: Doubl
         this.title = title
         this.rating = rating
         this.review = review
+        this.userId = userId
+        this.date = date
     }
 
     fun getRestaurantName(): String {
@@ -53,5 +61,21 @@ class Review (restaurant: String, location: String, title: String, rating: Doubl
 
     fun setReview(review: String) {
         this.review = review
+    }
+
+    fun getUserId(): String {
+        return userId!!
+    }
+
+    fun setUserId(userId: String) {
+        this.userId = userId
+    }
+
+    fun getDate(): LocalDateTime {
+        return date!!
+    }
+
+    fun setDate(date: LocalDateTime) {
+        this.date = date
     }
 }
