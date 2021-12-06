@@ -70,6 +70,18 @@
                       </LayoutPositions>
                     </value>
                   </entry>
+                  <entry key="navigation_maps">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="-945" />
+                            <option name="y" value="283" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
                   <entry key="navigation_new_review">
                     <value>
                       <LayoutPositions>
@@ -128,6 +140,11 @@
                         </option>
                         <option name="myPositions">
                           <map>
+                            <entry key="action_navigation_review_to_navigation_login">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
                             <entry key="action_navigation_review_to_navigation_new_review">
                               <value>
                                 <LayoutPositions />

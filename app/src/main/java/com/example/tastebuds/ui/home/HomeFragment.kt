@@ -3,10 +3,14 @@ package com.example.tastebuds.ui.home
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tastebuds.R
 import com.example.tastebuds.ui.MainActivity
+import com.google.android.material.button.MaterialButton
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlin.random.Random
 
 // TODO: Rename parameter arguments, choose names that match
@@ -23,7 +27,7 @@ class HomeFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-    private val activity = MainActivity().getMain()
+    var navController: NavController? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,6 +46,7 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         // List of restaurants
         val restaurantArrayList = populateList()
 
@@ -52,6 +57,12 @@ class HomeFragment : Fragment() {
         val mAdapter = RestaurantAdapter(restaurantArrayList)
         recyclerView.adapter = mAdapter
 
+        // Maps button
+        val mapButton = view.findViewById<FloatingActionButton>(R.id.map_view)
+        mapButton.setOnClickListener { view ->
+            navController = Navigation.findNavController(view)
+            navController?.navigate(R.id.action_navigation_home_to_navigation_maps)
+        }
     }
 
     companion object {
