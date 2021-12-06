@@ -57,7 +57,6 @@ class ReviewFragment : Fragment() {
                     .navigate(R.id.action_navigation_review_to_navigation_new_review)
             }
             else {
-                 TODO: UNCOMMNT THIS
                 Snackbar.make (view, getString(R.string.need_login), Snackbar.LENGTH_LONG).show()
                 Navigation.findNavController(view).navigate(R.id.action_navigation_review_to_navigation_login)
             }

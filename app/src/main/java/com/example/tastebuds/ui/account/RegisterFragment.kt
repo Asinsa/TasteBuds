@@ -122,6 +122,8 @@ class RegisterFragment : Fragment() {
         val newUser = User(email, displayName, firstName, lastName)
 
         val user = mAuth.currentUser
+        sharedViewModel.setUser(user!!)
+
         sharedViewModel.setEmail(user?.email.toString())
         sharedViewModel.logIn()
 

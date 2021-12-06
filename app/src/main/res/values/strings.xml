@@ -42,6 +42,10 @@
     <string name="save">Save</string>
     <string name="submit">Submit Review</string>
 
+    <string name="review_success">Successfully submitted review</string>
+    <string name="review_fail">Review incomplete so cannot be submitted</string>
+    <string name="save_review">Successfully saved review</string>
+
     <!-- Strings related to login -->
     <string name="go_to_account">Go To Account</string>
     <string name="login">Login</string>

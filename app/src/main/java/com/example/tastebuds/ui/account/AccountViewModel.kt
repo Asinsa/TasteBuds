@@ -3,6 +3,7 @@ package com.example.tastebuds.ui.account
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.google.firebase.auth.FirebaseUser
 
 class AccountViewModel : ViewModel() {
     //private val _quantity = MutableLiveData<Int>(0)
@@ -19,6 +20,17 @@ class AccountViewModel : ViewModel() {
 
     private val _loggedIn = MutableLiveData<Boolean>(false)
     val loggedIn: LiveData<Boolean> = _loggedIn
+
+    private val _user = MutableLiveData<FirebaseUser>(null)
+    val user: LiveData<FirebaseUser> = _user
+
+    fun setUser(user: FirebaseUser) {
+        _user.value = user
+    }
+
+    fun getUser(): FirebaseUser {
+        return _user.value!!
+    }
 
     fun setEmail(email: String){
         _email.value = email

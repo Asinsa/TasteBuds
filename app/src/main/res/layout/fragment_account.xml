@@ -7,26 +7,117 @@
     android:layout_height="match_parent"
     tools:context=".ui.account.AccountFragment">
 
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/favourites_toolbar"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="59dp"
-        android:background="@color/purple_700"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="493dp"
-        android:text="account page"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/favourites_toolbar"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <!-- Top Section -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:background="@color/purple_700"
+                android:layout_width="match_parent"
+                android:layout_height="275dp">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/log_off_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:text="Log Off"
+                    app:icon="@drawable/ic_logout_24"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="match_parent"
+                    android:layout_height="118dp"
+                    android:background="@drawable/wave_pattern"
+                    android:rotation="180"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/myCardView"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    app:cardCornerRadius="60dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.31">
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/profile_picture"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        tools:src="@mipmap/ic_launcher" />
+                </androidx.cardview.widget.CardView>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/display_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/merriweather_sans"
+                    android:gravity="center"
+                    android:paddingTop="10dp"
+                    android:text="example"
+                    android:textSize="34sp"
+                    android:textStyle="bold"
+                    android:typeface="normal"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/myCardView"
+                    app:layout_constraintVertical_bias="0.13"></com.google.android.material.textview.MaterialTextView>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/actual_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/merriweather_sans"
+                    android:text="Example Example"
+                    android:textAllCaps="true"
+                    android:textColor="@color/primaryColor"
+                    android:textSize="15sp"
+                    android:typeface="normal"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/display_name"
+                    app:layout_constraintVertical_bias="0.13999999" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/login_title"
+                android:layout_width="240dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/merriweather_sans"
+                android:text="My Reviews"
+                android:textColor="@color/white"
+                android:textSize="34sp"
+                android:textStyle="bold"
+                android:typeface="normal" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="414dp" />
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- TODO: Update blank fragment layout -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

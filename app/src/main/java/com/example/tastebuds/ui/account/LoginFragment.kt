@@ -68,6 +68,7 @@ class LoginFragment : Fragment() {
                     ).addOnCompleteListener(it) { task ->
                         if (task.isSuccessful) {
                             val user = mAuth.currentUser
+                            sharedViewModel.setUser(user!!)
                             sharedViewModel.setEmail(user?.email.toString())
                             sharedViewModel.logIn()
                             Navigation.findNavController(view)

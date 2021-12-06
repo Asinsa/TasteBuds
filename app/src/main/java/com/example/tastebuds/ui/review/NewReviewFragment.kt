@@ -8,10 +8,16 @@ import android.view.ViewGroup
 import android.widget.RatingBar
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
 import com.example.tastebuds.R
+import com.example.tastebuds.ui.account.AccountViewModel
+import com.example.tastebuds.ui.account.User
+import com.google.android.material.button.MaterialButton
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -25,6 +31,7 @@ private const val ARG_PARAM2 = "param2"
  */
 class NewReviewFragment : Fragment() {
     // TODO: Rename and change types of parameters
+    private val sharedViewModel: AccountViewModel by activityViewModels()
     private var param1: String? = null
     private var param2: String? = null
 
@@ -52,6 +59,8 @@ class NewReviewFragment : Fragment() {
             Navigation.findNavController(view).navigate(R.id.action_navigation_new_review_to_navigation_review)
         }
 
+        super.onViewCreated(view, savedInstanceState)
+
         val restaurantName = view.findViewById<TextInputEditText>(R.id.restaurant_name)
         val restaurantLocation = view.findViewById<TextInputEditText>(R.id.restaurant_location)
         val reviewTitle = view.findViewById<TextInputEditText>(R.id.review_title)
@@ -59,11 +68,55 @@ class NewReviewFragment : Fragment() {
         val reviewBody = view.findViewById<TextInputEditText>(R.id.review_body)
 
         // Rating bar
-        starRating.setOnRatingBarChangeListener { p0, p1, p2 -> }
+        starRating.setOnRatingBarChangeListener { p0, p1, p2 ->
 
-        super.onViewCreated(view, savedInstanceState)
+        }
 
+        //On Submit
+        val submitButton = view.findViewById<MaterialButton>(R.id.submit_button)
+        submitButton.setOnClickListener { view ->
+            val complete = isComplete(restaurantName, restaurantLocation, reviewTitle, starRating, reviewBody)
 
+            saveAndSubmitReview(
+                complete, restaurantName.text.toString(),
+                restaurantLocation.text.toString(),
+                reviewTitle.text.toString(),
+                starRating.rating.toDouble(),
+                reviewBody.text.toString()
+            )
+
+            if (complete) {
+                showMessage(view, getString(R.string.review_success))
+                Navigation.findNavController(view).navigate(R.id.action_navigation_new_review_to_navigation_review)
+            } else {
+                showMessage(view, getString(R.string.review_fail))
+                showMessage(view, getString(R.string.save_review))
+                Navigation.findNavController(view).navigate(R.id.action_navigation_new_review_to_navigation_review)
+            }
+        }
+    }
+
+    private fun isComplete(field1: TextInputEditText, field2: TextInputEditText, field3: TextInputEditText, field4: RatingBar, field5: TextInputEditText): Boolean {
+        return field1.text.toString() != "" &&
+                field2.text.toString() != "" &&
+                field3.text.toString() != "" &&
+                field4.rating != null &&
+                field5.text.toString() != ""
+    }
+
+    private fun saveAndSubmitReview(isComplete: Boolean, restaurantName: String, restaurantLocation: String, reviewTitle: String, starRating: Double, reviewBody: String) {
+        val review = Review(restaurantName, restaurantLocation, reviewTitle, starRating, reviewBody)
+        val user = sharedViewModel.getUser()
+
+        if (isComplete) {
+            Firebase.database.getReference("Reviews").child(user.uid).setValue(review)
+        } else {
+            Firebase.database.getReference("DraftReviews").child(user.uid).setValue(review)
+        }
+    }
+
+    private fun showMessage (view: View, message: String) {
+        Snackbar.make(view, message, Snackbar.LENGTH_LONG).show()
     }
 
     companion object {
