@@ -24,6 +24,17 @@ class AccountViewModel : ViewModel() {
     private val _user = MutableLiveData<FirebaseUser>(null)
     val user: LiveData<FirebaseUser> = _user
 
+    private val _userObj = MutableLiveData<User>(null)
+    val userObj: LiveData<User> = _userObj
+
+    fun setUserObj(userObj: User) {
+        _userObj.value = userObj
+    }
+
+    fun getUserObj(): User {
+        return _userObj.value!!
+    }
+
     fun setUser(user: FirebaseUser) {
         _user.value = user
     }

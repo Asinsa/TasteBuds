@@ -1,6 +1,8 @@
 package com.example.tastebuds.ui.account
 
+import android.content.ContentValues.TAG
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -9,7 +11,12 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
 import com.example.tastebuds.R
 import com.google.android.material.button.MaterialButton
+import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textview.MaterialTextView
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -26,7 +33,8 @@ class AccountFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     var mAuth = FirebaseAuth.getInstance()
-    private val accountViewModel: AccountViewModel by activityViewModels()
+    private val sharedViewModel: AccountViewModel by activityViewModels()
+    private lateinit var database: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,7 +59,7 @@ class AccountFragment : Fragment() {
         // Log out
         val logOffButton = view.findViewById<MaterialButton>(R.id.log_off_button)
         logOffButton.setOnClickListener{ view ->
-           // showMessage (view, "Logging you out.")
+            // showMessage (view, "Logging you out.")
             signOut()
         }
         mAuth.addAuthStateListener {
@@ -59,6 +67,24 @@ class AccountFragment : Fragment() {
                 activity?.finish()
             }
         }
+
+        // Filling in profile details
+        val displayName = view.findViewById<MaterialTextView>(R.id.display_name)
+        val actualName = view.findViewById<MaterialTextView>(R.id.actual_name)
+
+        val user = mAuth.currentUser
+        database = FirebaseDatabase.getInstance().getReference("Users")
+        database.child(user!!.uid).addValueEventListener(object: ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val user = snapshot.getValue(UserModel::class.java)
+                displayName.text = user!!.displayName
+                actualName.text = user?.firstName + " " + user?.lastName
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.d(TAG, "Read failed")
+            }
+        })
     }
 
     private fun signOut(){

@@ -15,7 +15,7 @@ class RestaurantAdapter (private val restaurantArrayList: MutableList<Restaurant
          */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val v = inflater.inflate(R.layout.row_layout, parent, false)
+        val v = inflater.inflate(R.layout.restaurant_row_layout, parent, false)
 
         return ViewHolder(v)
     }
